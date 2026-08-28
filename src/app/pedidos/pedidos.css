@@ -1,0 +1,61 @@
+.pedidos-pagina {
+    max-width: 900px;
+    margin: 2.5rem auto;
+    padding: 1.5rem 1.5rem 3rem;
+    background-color: wheat;
+    border: 2px solid black;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(42, 26, 16, 0.15);
+}
+
+.pedidos-pagina h2 {
+    color: #6b4423;
+    margin-bottom: 1rem;
+}
+
+.tabla-pedido {
+    background-color: white;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.img-item-pedido {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.total-pedido {
+    color: #6b4423;
+    margin-top: 1rem;
+}
+
+.datos-cliente {
+    background-color: #f4e6cb;
+    border: 1px solid #6b4423;
+    border-radius: 10px;
+    padding: 1.25rem 1.25rem 1.5rem;
+}
+
+.datos-cliente h4 {
+    color: #6b4423;
+    width: 100%;
+}
+
+.btn-madera {
+    background-color: #6b4423;
+    border: 1px solid #4a2f18;
+    color: white;
+    font-weight: 500;
+}
+
+.btn-madera:hover {
+    background-color: #7c5230;
+    color: white;
+}
+
+.mensaje-exito {
+    color: #2e7d32;
+    font-weight: 600;
+}

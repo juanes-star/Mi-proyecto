@@ -1,0 +1,19 @@
+.info-inicio {
+    max-width: 720px;
+    width: 90%;
+    margin: 2.5rem auto;
+    padding: 2rem 2.5rem;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: #E8CFA9;
+}
+
+.info-inicio h2 {
+    margin-bottom: 1rem; 
+}
+
+.info-inicio p {
+    color: black;
+    line-height: 1.7;
+    margin-bottom: 0;
+}

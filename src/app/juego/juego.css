@@ -1,0 +1,65 @@
+.juego-pagina {
+    max-width: 640px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: wheat;
+    border: 2px solid black;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(42, 26, 16, 0.15);
+}
+
+.juego-pagina h2 {
+    color: #6b4423;
+    margin-bottom: 0.5rem;
+}
+
+
+.marcador {
+    font-weight: 600;
+    color: #6b4423;
+    margin-bottom: 1.25rem;
+}
+
+.tablero {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    max-width: 460px;
+    margin: 0 auto;
+}
+
+.celda {
+    aspect-ratio: 1 / 1;
+    background-color: #6b4423;
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.15s ease;
+    overflow: hidden;
+    padding: 0;
+}
+
+.celda:hover:not(.descubierta) {
+    transform: scale(1.04);
+}
+
+.celda.descubierta {
+    background-color: white;
+    cursor: default;
+}
+
+.celda img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mensaje-exito {
+    color: #2e7d32;
+    font-weight: 600;
+}

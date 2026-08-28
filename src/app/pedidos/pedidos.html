@@ -1,0 +1,102 @@
+<div class="container pedidos-pagina">
+  <h2 class="text-center"><i class="bi bi-receipt me-2"></i>Mi pedido</h2>
+ 
+  @if (carrito.items().length === 0) {
+
+  <p class="text-center mt-4">
+    Tu carrito está vacío. Ve a <a routerLink="/comidas">comidas</a> o <a routerLink="/bebidas">bebidas</a>
+    para agregar productos.
+  </p>
+
+  } @else {
+
+  <div class="tabla-pedido mt-4">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Subtotal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of carrito.items(); track item.id) {
+        <tr>
+          <td><img [src]="item.imagen" [alt]="item.nombre" class="img-item-pedido"></td>
+          <td>{{item.nombre}}</td>
+          <td>{{formatearPrecio(item.precio)}}</td>
+          <td>
+            <div class="d-flex align-items-center gap-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary"
+                (click)="disminuir(item.id, item.cantidad)">-</button>
+              <span>{{item.cantidad}}</span>
+              <button type="button" class="btn btn-sm btn-outline-secondary"
+                (click)="aumentar(item.id, item.cantidad)">+</button>
+            </div>
+          </td>
+          <td>{{formatearPrecio(subtotal(item.precio, item.cantidad))}}</td>
+          <td>
+            <button type="button" class="btn btn-sm btn-outline-danger" title="Quitar" (click)="quitar(item.id)">
+              <i class="bi bi-trash"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <h4 class="text-end total-pedido">Total: {{formatearPrecio(carrito.total())}}</h4>
+  </div>
+
+  <form #formulario="ngForm" (ngSubmit)="realizarPedido(formulario)" class="datos-cliente row g-3 mt-4">
+    <h4>Datos de quien realiza el pedido</h4>
+
+    <div class="col-12 col-md-4">
+      <label class="form-label">Nombre completo</label>
+      <input type="text" name="nombreCompleto" class="form-control" [(ngModel)]="datosCliente.nombreCompleto"
+        #nombreCompleto="ngModel" required minlength="3">
+      @if (nombreCompleto.invalid && nombreCompleto.touched) {
+      <small class="text-danger">Ingresa tu nombre completo.</small>
+      }
+    </div>
+
+    <div class="col-12 col-md-4">
+      <label class="form-label">Celular</label>
+      <input type="tel" name="celular" class="form-control" [(ngModel)]="datosCliente.celular" #celular="ngModel"
+        required pattern="[0-9]{7,15}">
+      @if (celular.invalid && celular.touched) {
+      <small class="text-danger">Ingresa un número válido (solo dígitos, 7 a 15).</small>
+      }
+    </div>
+
+    <div class="col-12 col-md-4">
+      <label class="form-label">Dirección</label>
+      <input type="text" name="direccion" class="form-control" [(ngModel)]="datosCliente.direccion"
+        #direccion="ngModel" required minlength="5">
+      @if (direccion.invalid && direccion.touched) {
+      <small class="text-danger">Ingresa la dirección de entrega.</small>
+      }
+    </div>
+
+    <div class="col-12 text-center mt-3">
+      <button type="submit" class="btn btn-madera" [disabled]="generando()">
+        @if (generando()) {
+        <span><i class="bi bi-hourglass-split me-1"></i>Generando PDF...</span>
+        } @else {
+        <span><i class="bi bi-file-earmark-pdf me-1"></i>Realizar pedido</span>
+        }
+      </button>
+    </div>
+
+    @if (pedidoGenerado()) {
+    <p class="mensaje-exito text-center mt-2">
+      <i class="bi bi-check-circle-fill me-1"></i>¡Pedido generado! Revisa la descarga de tu PDF.
+    </p>
+    }
+  </form>
+
+  }
+</div>

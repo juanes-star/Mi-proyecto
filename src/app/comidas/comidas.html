@@ -1,0 +1,118 @@
+<div class="container comidas-pagina">
+  <h2 class="text-center"><i class="bi bi-egg-fried me-2"></i>Nuestras comidas</h2>
+  <p class="text-center subtitulo">Explora nuestra carta por categoría o busca por nombre e ingredientes.</p>
+
+  <div class="buscador row g-2 justify-content-center align-items-end">
+    <div class="col-12 col-md-5">
+      <label class="form-label">Buscar por nombre</label>
+      <input type="text" class="form-control" placeholder="Ej: Hamburguesa"
+        [(ngModel)]="nombreBusqueda" (keyup.enter)="buscarPorNombre()">
+    </div>
+    <div class="col-12 col-md-5">
+      <label class="form-label">Buscar por ingrediente</label>
+      <input type="text" class="form-control" placeholder="Ej: pollo"
+        [(ngModel)]="ingredienteBusqueda" (keyup.enter)="buscarPorIngrediente()">
+    </div>
+    <div class="col-12 col-md-1 d-grid">
+      <button class="btn btn-limpiar" title="Limpiar filtros" (click)="limpiar()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+    </div>
+
+    <div class="col-12 d-flex gap-2 justify-content-center mt-2">
+      <button class="btn btn-madera" (click)="buscarPorNombre()">
+        <i class="bi bi-search me-1"></i>Buscar por nombre
+      </button>
+      <button class="btn btn-madera" (click)="buscarPorIngrediente()">
+        <i class="bi bi-search me-1"></i>Buscar por ingrediente
+      </button>
+    </div>
+  </div>
+
+  @if (modoBusqueda()) {
+
+  <div class="row g-4 mt-2">
+    <h1>Resultados de la búsqueda</h1>
+    <hr>
+
+    @if (buscando()) {
+    <p class="text-center">Buscando...</p>
+    }
+
+    @if (!buscando() && sinResultados()) {
+    <p class="text-center">No se encontraron comidas con ese criterio.</p>
+    }
+
+    @for (i of resultadosBusqueda(); track i.idMeal) {
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card-comida h-100">
+
+        <img src="{{i.strMealThumb}}" alt="{{i.strMeal}}" class="card-comida-img">
+
+        <div class="card-comida-body">
+          <h3>{{i.strMeal}}</h3>
+          <p class="card-comida-precio">{{formatearPrecio(i.precio)}}</p>
+
+          <details (toggle)="cargarDetalle(i.idMeal, $event)">
+            <summary>Ver ingredientes</summary>
+            <ul>
+              @for (ing of ingredientes(i.idMeal); track ing) {
+              <li>{{ing}}</li>
+              }
+            </ul>
+          </details>
+
+          <button class="btn btn-madera btn-sm mt-2" (click)="agregarAlPedido(i)">
+            <i class="bi bi-cart-plus me-1"></i>Agregar al pedido
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  } @else {
+
+  @for (item of categoriasApi(); track item.strCategory) {
+
+  <div class="row g-4 mt-2">
+
+    <h1>{{item.strCategory}}</h1>
+    <hr>
+
+    @for (i of mealsPorCategoria(item.strCategory); track i.idMeal) {
+
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card-comida h-100">
+
+        <img src="{{i.strMealThumb}}" alt="{{i.strMeal}}" class="card-comida-img">
+
+        <div class="card-comida-body">
+          
+          <h3>{{i.strMeal}}</h3>
+
+          <p class="card-comida-precio">{{formatearPrecio(i.precio)}}</p>
+
+          <details (toggle)="cargarDetalle(i.idMeal, $event)">
+
+            <summary>Ver ingredientes</summary>
+
+            <ul>
+              @for (ing of ingredientes(i.idMeal); track ing) {
+              <li>{{ing}}</li>
+              }
+            </ul>
+
+          </details>
+
+          <button class="btn btn-madera btn-sm mt-2" (click)="agregarAlPedido(i)">
+            <i class="bi bi-cart-plus me-1"></i>Agregar al pedido
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+  }
+</div>

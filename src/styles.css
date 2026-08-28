@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', system-ui, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background:url("/fondo-body.png");
+  background-position: center;
+  background-size: cover;
+}
+
+
+
+

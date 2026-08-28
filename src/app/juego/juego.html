@@ -1,0 +1,35 @@
+<div class="container juego-pagina text-center">
+  <h2><i class="bi bi-controller me-2"></i>Encuentra el plato y la bebida</h2>
+  
+
+  <p class="marcador">Intentos: {{intentos()}} &nbsp;|&nbsp; Encontrados: {{encontrados()}}/2</p>
+
+  @if (cargando()) {
+
+  <p>Preparando el tablero...</p>
+
+  } @else {
+
+  <div class="tablero">
+    @for (celda of celdas(); track celda.indice) {
+    <button class="celda" [class.descubierta]="celda.descubierta"
+      (click)="voltear(celda)" [disabled]="celda.descubierta">
+      @if (celda.descubierta && celda.imagen) {
+      <img [src]="celda.imagen" alt="">
+      } @else if (celda.descubierta) {
+      <i class="bi bi-emoji-frown"></i>
+      } @else {
+      <i class="bi bi-question-lg"></i>
+      }
+    </button>
+    }
+  </div>
+
+  @if (gano()) {
+  <p class="mensaje-exito mt-3">
+    <i class="bi bi-trophy-fill me-1"></i>¡Encontraste ambas imágenes! Preparando una nueva ronda...
+  </p>
+  }
+
+  }
+</div>

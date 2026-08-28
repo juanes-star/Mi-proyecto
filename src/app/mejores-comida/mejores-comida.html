@@ -1,0 +1,21 @@
+<div class="container estrella-card text-center">
+  <h2><i class="bi bi-star-fill me-2"></i>Plato estrella</h2>
+
+  @if (cargando()) {
+  <p>Cargando plato estrella...</p>
+  } @else if (plato()) {
+  <div class="estrella-contenido">
+    <img [src]="plato()!.strMealThumb" [alt]="plato()!.strMeal" class="estrella-img">
+    <div class="estrella-info text-start">
+      <h3 class="text-center">{{plato()!.strMeal}}</h3>
+      <p class="estrella-precio text-center">{{formatearPrecio(plato()!.precio)}}</p>
+      <h4>Ingredientes</h4>
+      <ul class="estrella-ingredientes">
+        @for (ing of ingredientesDestacados(); track ing) {
+        <li>{{ing}}</li>
+        }
+      </ul>
+    </div>
+  </div>
+  }
+</div>

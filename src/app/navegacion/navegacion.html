@@ -1,0 +1,33 @@
+<nav class="navbar-madera">
+    <div class="container-fluid d-flex align-items-center justify-content-between flex-wrap py-2">
+        <a routerLink="/" class="marca">
+            <img src="/logo.png" alt="Logo Manila" class="logo-marca">
+            MANILA
+        </a>
+        <ul class="nav nav-pills gap-1">
+            <li class="nav-item ">
+                <a class="nav-link" routerLink="/" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/comidas" routerLinkActive="active">Comidas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/bebidas" routerLinkActive="active">Bebidas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/juego" routerLinkActive="active">Juego</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link posicion-carrito" routerLink="/pedidos" routerLinkActive="active" title="Mi pedido">
+                    <i class="bi bi-cart3"></i>
+                    @if (carrito.cantidadTotal() > 0) {
+                    <span class="badge-carrito">{{carrito.cantidadTotal()}}</span>
+                    }
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>
