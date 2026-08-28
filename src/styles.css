@@ -12,7 +12,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background:url("/fondo-body.png");
+  background: url("./assets/fondo-body.png");
   background-position: center;
   background-size: cover;
 }

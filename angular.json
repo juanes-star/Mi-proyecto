@@ -19,11 +19,13 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "outputPath": "dist/Mi-Proyecto",
             "assets": [
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -54,6 +56,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "github": {
+              "baseHref": "./",
+              "outputPath": {
+                "base": "docs",
+                "browser": ""
+              }
             }
           },
           "defaultConfiguration": "production"
