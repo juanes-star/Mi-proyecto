@@ -17,12 +17,6 @@
     background-color: white;
     border-radius: 8px;
     padding: 0.5rem;
-    overflow-x: auto;
-}
-
-.tabla-pedido table {
-    margin-bottom: 0;
-    min-width: 640px;
 }
 
 .img-item-pedido {
@@ -66,79 +60,13 @@
     font-weight: 600;
 }
 
-@media (max-width: 575.98px) {
-    .pedidos-pagina {
-        margin: 1rem 0.5rem;
-        padding: 1rem 0.75rem 2rem;
-    }
-
+@media (max-width: 767.98px) {
     .tabla-pedido {
-        padding: 0.75rem;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    .tabla-pedido table,
-    .tabla-pedido tbody,
-    .tabla-pedido tr,
-    .tabla-pedido td {
-        display: block;
-        min-width: 0;
-        width: 100%;
-    }
-
-    .tabla-pedido thead {
-        display: none;
-    }
-
-    .tabla-pedido tr {
-        border: 1px solid #eadcc5;
-        border-radius: 8px;
-        margin-bottom: 0.75rem;
-        padding: 0.65rem;
-    }
-
-    .tabla-pedido td {
-        align-items: center;
-        border: 0;
-        display: flex;
-        gap: 0.75rem;
-        justify-content: space-between;
-        min-height: 2.5rem;
-        padding: 0.4rem 0;
-        text-align: right;
-    }
-
-    .tabla-pedido td::before {
-        color: #6b4423;
-        content: attr(data-label);
-        font-weight: 600;
-        text-align: left;
-    }
-
-    .tabla-pedido td:first-child {
-        justify-content: center;
-    }
-
-    .tabla-pedido td:first-child::before {
-        display: none;
-    }
-
-    .tabla-pedido td:nth-child(2) {
-        display: block;
-        font-weight: 600;
-        text-align: center;
-    }
-
-    .tabla-pedido td:nth-child(2)::before {
-        display: block;
-        margin-bottom: 0.2rem;
-        text-align: center;
-    }
-
-    .tabla-pedido td:nth-child(4) > div {
-        margin-left: auto;
-    }
-
-    .total-pedido {
-        font-size: 1.1rem;
+    .tabla-pedido table {
+        min-width: 640px;
     }
 }
